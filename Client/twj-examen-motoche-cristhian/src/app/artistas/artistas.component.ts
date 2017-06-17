@@ -4,8 +4,8 @@ import { Artista } from 'app/Model/Artista';
 
 @Component({
   selector: 'app-artista',
-  templateUrl: './artista.component.html',
-  styleUrls: ['./artista.component.css']
+  templateUrl: './artistas.component.html',
+  styleUrls: ['./artistas.component.css']
 })
 export class ArtistaComponent implements OnInit {
   @Input() artista:Artista
