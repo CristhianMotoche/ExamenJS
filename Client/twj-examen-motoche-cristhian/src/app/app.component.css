@@ -1,8 +1,16 @@
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
 input {
   margin: 10px;
 }
 
 .artista {
   border: 1px dashed black;
+  padding: 5px;
   margin: 5px;
+  border-radius: 10px;
 }
