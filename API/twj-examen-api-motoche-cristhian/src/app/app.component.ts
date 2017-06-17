@@ -25,6 +25,11 @@ export class AppComponent {
         (response) => {
           let moviesResponse = response.json();
           moviesResponse.map((movie) => movie.show_cast = movie.show_cast.split(","));
+          moviesResponse.map((movie) => {
+            if(movie.poster === null || movie.poster === undefined) {
+              movie.poster = '/assets/no-image.png'
+            }
+          });
           this.movies = moviesResponse;
         },
         (error) => { console.log(error); },
