@@ -4,8 +4,16 @@ form {
   margin-top: 25px;
 }
 
+.form-group {
+  padding: 10px;
+  background-color: yellow;
+  box-shadow: 10px 10px 5px #888888;
+  border-radius: 10px;
+}
+
 input {
   margin: 10px;
+  width: 90%;
 }
 
 .artista {
