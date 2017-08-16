@@ -6,6 +6,6 @@
   <h3><strong>Number:</strong></h3> <p>{{ card.card_number }}</p>
   <h3><strong>Card Set:</strong></h3> <p>{{ card.card_set }}</p>
   <h3><strong>Rarity:</strong></h3><p>{{ card.rarity }}</p>
-  <button class="btn btn-primary" (click)="saveCard(card)">Save</button>
-  <button class="btn btn-danger" (click)="deleteCard(card)">Delete</button>
+  <button *ngIf="card.save" class="btn btn-primary" (click)="saveCard()">Save</button>
+  <button *ngIf="card.delete" class="btn btn-danger" (click)="deleteCard()">Delete</button>
 </div>

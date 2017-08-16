@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component
+  , OnInit
+  , Input
+  , Output
+  , EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { Card } from 'app/models/Card';
 
@@ -9,6 +13,10 @@ import { Card } from 'app/models/Card';
 })
 export class CardComponent implements OnInit {
   @Input() card:Card
+  @Output()
+  cardSavedEvent: EventEmitter<Card> = new EventEmitter<Card>();
+  @Output()
+  cardDeletedEvent: EventEmitter<Card> = new EventEmitter<Card>();
 
   constructor(
     private _http: Http
@@ -17,10 +25,10 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveCard(card){
-    console.log(card);
+  saveCard(){
+    this.cardSavedEvent.emit(this.card);
     this._http
-      .post('https://cristhianmotoche.mybluemix.net/card', card)
+      .post('https://cristhianmotoche.mybluemix.net/card', this.card)
       .subscribe(
         (response) => {
           console.log("[RESPONSE]:", response);
@@ -32,9 +40,10 @@ export class CardComponent implements OnInit {
       )
   }
 
-  deleteCard(card){
+  deleteCard(){
+    this.cardDeletedEvent.emit(this.card);
     this._http
-      .delete('https://cristhianmotoche.mybluemix.net/card/delete?name=' + card.name)
+      .delete('https://cristhianmotoche.mybluemix.net/card/delete?name=' + this.card.name)
       .subscribe(
         (response) => {
           console.log("[RESPONSE]:", response);

@@ -8,6 +8,7 @@ import { Card } from 'app/models/Card';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  savedCard:Card = undefined
   cards:Card[] = []
 
   constructor(private _http: Http){ }
@@ -23,6 +24,10 @@ export class AppComponent {
         (response) => {
           let cardsResponse = response.json().data;
           this.cards = cardsResponse;
+          this.cards.map(c => {
+            c.save = true;
+            c.delete = false;
+          });
         },
         (error) => { console.log(error); },
         () => {}
@@ -36,9 +41,24 @@ export class AppComponent {
         (response) => {
           let cardsResponse = response.json();
           this.cards = cardsResponse;
+          this.cards.map(c => {
+            c.save = false;
+            c.delete = true;
+          });
         },
         (error) => { console.log(error); },
         () => {}
       )
+  }
+
+  cardWasSaved(event) {
+    this.savedCard = event;
+  }
+
+  cardWasDeleted(event) {
+    let index = this.cards.findIndex(c => c.name === event.name);
+    if (index >= 0) {
+      this.cards.splice(index, 1);
+    }
   }
 }

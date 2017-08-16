@@ -4,5 +4,7 @@ export interface Card {
     price_shift: number,
     card_number: string,
     card_set: string,
-    rarity: string
+    rarity: string,
+    save: boolean,
+    delete: boolean
 }
